@@ -1,8 +1,12 @@
-import Home from './page/home.vue';
+import Home from "./page/home.vue";
 
 export default [
   {
-    path:'/home',
-    component: Home,
+    path: "/",
+    redirect: '/home'
+  },
+  {
+    path: "/home",
+    component: Home
   }
-]
+];
