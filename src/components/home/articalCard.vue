@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap">
+  <div class="card-wrap">
     <div class="left">
       <h2>vue-manage-system 后台管理系统开发总结</h2>
       <ul>
@@ -61,11 +61,11 @@ export default {
 
 <style lang="less" scoped>
 @import "~@/global.less";
-.wrap {
+.card-wrap {
   width: 100%;
   display: flex;
   position: relative;
-  margin-bottom: 6rem !important;
+  margin-bottom: 6rem ;
   .left {
     width: 100%;
     color: @font-primary-color;
