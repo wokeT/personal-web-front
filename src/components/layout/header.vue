@@ -53,7 +53,7 @@ export default {};
 .wrap {
   background: @primary-color;
   .header {
-    width: 80%;
+    width: 60%;
     margin: 0 auto;
     color: white;
     padding: 20px 10px 10px 10px;

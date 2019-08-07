@@ -39,7 +39,9 @@
           </span>
         </li>
       </ul>
-      <p>vue-manage-system，一个基于 Vue.js 和 element-ui 的后台管理系统模板，从2016年年底第一个commit，到现在差不多两年了，GitHub上也有了 5k star，也是这些让我有了持续更新的动力，其中也踩了很多坑，在这总结一下。</p>
+      <p
+        class="mt20 content"
+      >vue-manage-system，一个基于 Vue.js 和 element-ui 的后台管理系统模板，从2016年年底第一个commit，到现在差不多两年了，GitHub上也有了 5k star，也是这些让我有了持续更新的动力，其中也踩了很多坑，在这总结一下。</p>
       <div class="btn">阅读全文</div>
     </div>
     <div class="right">
@@ -49,7 +51,12 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    data: Object,
+    title: String,
+  }
+};
 </script>
 
 <style lang="less" scoped>
@@ -57,6 +64,8 @@ export default {};
 .wrap {
   width: 100%;
   display: flex;
+  position: relative;
+  margin-bottom: 6rem !important;
   .left {
     width: 100%;
     color: @font-primary-color;
@@ -116,16 +125,38 @@ export default {};
       }
     }
 
+    .content {
+      font-size: 0.97rem;
+      line-height: 2;
+    }
+
     .btn {
       background: @primary-color;
+      width: 5.5rem;
+      height: 2.13rem;
+      line-height: 2.13rem;
+      text-align: center;
+      color: white;
+      font-size: 0.85rem;
+      &:hover {
+        cursor: pointer;
+        opacity: 0.9;
+      }
     }
   }
   .right {
     margin-left: 1rem;
     width: 200px;
+    height: 200px;
+    overflow: hidden;
     img {
       width: 200px;
       height: 200px;
+      transition: all 0.3s;
+      &:hover {
+        transform: scale(1.2);
+        transition: all 0.3s;
+      }
     }
   }
   @media screen and(max-width: 768px) {

@@ -1,6 +1,6 @@
 <template>
   <div class="wrap">
-    <ArticalCard />
+    <ArticalCard v-for="(item,index) in [{name:1},{name:2},{name:3}]" :key="index" :data="item" />
   </div>
 </template>
 
@@ -32,5 +32,7 @@ export default {
     margin: 0 auto;
   }
 }
-
+.wrap {
+  padding-top: 2.5rem;
+}
 </style>
