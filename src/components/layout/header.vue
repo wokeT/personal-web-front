@@ -2,24 +2,26 @@
   <div class="wrap">
     <div class="header">
       <ul class="fr menu">
-        <li>
+        <router-link tag="li" to="/home">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-home" />
           </svg>
           <span class="ml5">首页</span>
-        </li>
+        </router-link>
         <li>
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-fenlei" />
           </svg>
           <span class="ml5">分类</span>
         </li>
-        <li>
+
+        <router-link tag="li" to="/archives">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-guidangicon" />
           </svg>
           <span class="ml5">归档</span>
-        </li>
+        </router-link>
+
         <li>
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-biaoqian" />
@@ -32,7 +34,7 @@
           </svg>
           <span class="ml5">开源</span>
         </li>
-                <li>
+        <li>
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-guanyuwomen" />
           </svg>
