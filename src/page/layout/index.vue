@@ -1,9 +1,11 @@
 <template>
   <div class="root-wrap">
     <div :class="{rootLeft:true, rootMove:visible}">
-      <Header />
-      <router-view></router-view>
-      <Footer />
+      <Header id="header" />
+      <div id="content" class="root-content">
+        <router-view></router-view>
+      </div>
+      <Footer id="footer" />
     </div>
     <div :class="{rootRight:true,rootMoveSlide:visible}">
       <Slider />
@@ -43,6 +45,15 @@ export default {
       visible: false,
       iconType: "menu"
     };
+  },
+  mounted() {
+    //设置content最小高度
+    let headerHeight = document.getElementById('header').clientHeight;
+    let footerHeight = document.getElementById('footer').clientHeight;
+    let pageHeight = document.body.clientHeight;
+    let contentDom = document.getElementById('content');
+    contentDom.style.minHeight =  pageHeight-headerHeight-footerHeight+'px';
+    
   },
   methods: {
     toggle: function() {
@@ -108,4 +119,24 @@ html {
     }
   }
 }
+
+@media screen and(min-width: 544px) {
+  .root-content {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+@media screen and(min-width: 768px) {
+  .root-content {
+    width: 70%;
+    margin: 0 auto;
+  }
+}
+@media screen and(min-width: 1024px) {
+  .root-content {
+    width: 60%;
+    margin: 0 auto;
+  }
+}
+
 </style>

@@ -15,24 +15,24 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@media screen and(min-width: 544px) {
-  .home-wrap {
-    width: 90%;
-    margin: 0 auto;
-  }
-}
-@media screen and(min-width: 768px) {
-  .home-wrap {
-    width: 70%;
-    margin: 0 auto;
-  }
-}
-@media screen and(min-width: 1024px) {
-  .home-wrap {
-    width: 60%;
-    margin: 0 auto;
-  }
-}
+// @media screen and(min-width: 544px) {
+//   .home-wrap {
+//     width: 90%;
+//     margin: 0 auto;
+//   }
+// }
+// @media screen and(min-width: 768px) {
+//   .home-wrap {
+//     width: 70%;
+//     margin: 0 auto;
+//   }
+// }
+// @media screen and(min-width: 1024px) {
+//   .home-wrap {
+//     width: 60%;
+//     margin: 0 auto;
+//   }
+// }
 .home-wrap {
   padding-top: 2.5rem;
   .pagination {
