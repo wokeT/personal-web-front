@@ -33,6 +33,7 @@
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import Slider from "@/components/layout/slider";
+import config from "@/api/interface.js";
 export default {
   name: "layout",
   components: {
@@ -46,14 +47,21 @@ export default {
       iconType: "menu"
     };
   },
-  mounted() {
+  async mounted() {
     //设置content最小高度
-    let headerHeight = document.getElementById('header').clientHeight;
-    let footerHeight = document.getElementById('footer').clientHeight;
+    let headerHeight = document.getElementById("header").clientHeight;
+    let footerHeight = document.getElementById("footer").clientHeight;
     let pageHeight = document.body.clientHeight;
-    let contentDom = document.getElementById('content');
-    contentDom.style.minHeight =  pageHeight-headerHeight-footerHeight+'px';
-    
+    let contentDom = document.getElementById("content");
+    contentDom.style.minHeight =
+      pageHeight - headerHeight - footerHeight + "px";
+
+    const userInfo = sessionStorage.getItem("userInfo");
+
+    //获取用户信息
+    if (!userInfo) {
+      await this.getUserData();
+    }
   },
   methods: {
     toggle: function() {
@@ -62,6 +70,18 @@ export default {
     //改变iconType
     changeIcon: function(type) {
       this.iconType = type;
+    },
+    //获取用户信息
+    async getUserData() {
+      try {
+        let res = await this.axios.get(`${config.user.apiUser}/5d4a9ac833697815981e0920`);
+        sessionStorage.setItem("userInfo", JSON.stringify(res.data));
+      } catch (e) {
+        this.$notify.error({
+          title: "出错了",
+          message: e.message
+        });
+      }
     }
   }
 };
@@ -138,5 +158,4 @@ html {
     margin: 0 auto;
   }
 }
-
 </style>

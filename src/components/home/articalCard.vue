@@ -1,14 +1,15 @@
 <template>
   <div class="card-wrap">
     <div class="left">
-      <h2>vue-manage-system 后台管理系统开发总结</h2>
+      <h2>{{data && data.title}}</h2>
       <ul>
         <li>
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-rili" />
           </svg>
           <span class="ml5">
-            <span class="toggleHide">发表于</span> 2018-09-12
+            <span class="toggleHide">发表于</span>
+            {{data && getDate}}
           </span>
         </li>
         <span class="shortLine">|</span>
@@ -26,7 +27,8 @@
             <use xlink:href="#icon-yanjing" />
           </svg>
           <span class="ml5">
-            <span class="toggleHide">阅读数</span>7200
+            <span class="toggleHide">阅读数</span>
+            {{data && data.readCount}}
           </span>
         </li>
         <span class="shortLine">|</span>
@@ -35,26 +37,31 @@
             <use xlink:href="#icon-xihuan" />
           </svg>
           <span class="ml5">
-            <span class="toggleHide">喜欢数</span>142
+            <span class="toggleHide">喜欢数</span>
+            {{data && data.star}}
           </span>
         </li>
       </ul>
-      <p
-        class="mt20 content"
-      >vue-manage-system，一个基于 Vue.js 和 element-ui 的后台管理系统模板，从2016年年底第一个commit，到现在差不多两年了，GitHub上也有了 5k star，也是这些让我有了持续更新的动力，其中也踩了很多坑，在这总结一下。</p>
+      <p class="mt20 content">{{data && data.info}}</p>
       <div class="btn">阅读全文</div>
     </div>
     <div class="right">
-      <img src="http://www.woke20.com/static/slider3.510ca3b8.jpg" alt />
+      <img :src="data.cover_url" alt />
     </div>
   </div>
 </template>
 
 <script>
+import moment from "moment";
 export default {
   props: {
-    data: Object,
-    title: String,
+    data: Object
+  },
+  computed: {
+    getDate: ()=> {
+      // return moment(date).format("YYYY-MM-DD");
+      // return this.props.data
+    }
   }
 };
 </script>
@@ -65,7 +72,7 @@ export default {
   width: 100%;
   display: flex;
   position: relative;
-  margin-bottom: 6rem ;
+  margin-bottom: 6rem;
   .left {
     width: 100%;
     color: @font-primary-color;
