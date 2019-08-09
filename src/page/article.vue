@@ -1,15 +1,16 @@
 <template>
   <div class="article-wrap">
-    <article>
+    <article v-show="!loading">
       <header>
-        <h1>vue-manage-system 后台管理系统开发总结</h1>
+        <h1>{{data.title}}</h1>
         <ul>
           <li>
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-rili" />
             </svg>
             <span class="ml5">
-              <span class="toggleHide">发表于</span> 2018-09-12
+              <span class="toggleHide">发表于</span>
+              {{data && $moment(data.updateDate).format('YYYY-MM-DD')}}
             </span>
           </li>
           <span class="shortLine">|</span>
@@ -27,7 +28,8 @@
               <use xlink:href="#icon-yanjing" />
             </svg>
             <span class="ml5">
-              <span class="toggleHide">阅读数</span>7200
+              <span class="toggleHide">阅读数</span>
+              {{data && data.readCount}}
             </span>
           </li>
           <span class="shortLine">|</span>
@@ -36,25 +38,73 @@
               <use xlink:href="#icon-xihuan" />
             </svg>
             <span class="ml5">
-              <span class="toggleHide">喜欢数</span>142
+              <span class="toggleHide">喜欢数</span>
+              {{data && data.star}}
             </span>
           </li>
         </ul>
       </header>
-      <section></section>
+      <section v-html="data.content"></section>
     </article>
 
-    <div :class="{likeBtn:true,likeBtnActive:true}">
+    <div @click="starHandle" v-show="!loading" :class="{likeBtn:true,likeBtnActive:star}">
       <i class="el-icon-star-off"></i>
       <span class="ml5">喜欢</span>
       <span class="ml5 mr5">|</span>
-      <span>123</span>
+      <span>{{data.star}}</span>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import config from "@/api/interface";
+import moment from 'moment';
+export default {
+  data: () => ({
+    data: {},
+    loading: false,
+    star: false
+  }),
+
+  async mounted() {
+    await this.getData();
+  },
+
+  methods: {
+    async getData() {
+      this.loading = true;
+      try {
+        let res = await this.axios.get(
+          `${config.blogs.apiBlog}/${this.$router.history.current.params.id}`
+        );
+        this.data = res.data;
+      } catch (e) {
+        this.$notify.error({
+          title: "出错了",
+          message: e.message
+        });
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    async starHandle() {
+      if (this.star) return;
+      try {
+        await this.axios.patch(
+          `${config.blogs.apiBlog}/${this.$router.history.current.params.id}/star`
+        );
+        this.star = true;
+        this.data.star++;
+      } catch (e) {
+        this.$notify.error({
+          title: "出错了",
+          message: e.message
+        });
+      }
+    }
+  }
+};
 </script>
 
 <style lang='less' scoped >
@@ -107,6 +157,7 @@ export default {};
     line-height: 4rem;
     font-size: 1.14rem;
     margin: 0 auto;
+    cursor: pointer;
   }
   .likeBtnActive {
     border-radius: 2.5rem;
@@ -118,6 +169,7 @@ export default {};
     text-align: center;
     line-height: 4rem;
     font-size: 1.14rem;
+    cursor: default;
   }
 }
 </style>

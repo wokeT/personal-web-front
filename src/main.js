@@ -6,10 +6,10 @@ import VueAxios from 'vue-axios'
 import Router from 'vue-router';
 import '@/theme/index.css';
 import routerConfig from './router.config';
-
-
+import moment from "moment";
 
 Vue.config.productionTip = false
+Vue.prototype.$moment = moment;
 
 Vue.use(VueAxios, axios);
 Vue.use(ElementUI);

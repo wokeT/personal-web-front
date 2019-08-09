@@ -1,7 +1,7 @@
 <template>
   <div class="card-wrap">
     <div class="left">
-      <h2>{{data && data.title}}</h2>
+      <router-link tag="h2" :to="`/article/${data._id}`">{{data && data.title}}</router-link>
       <ul>
         <li>
           <svg class="icon" aria-hidden="true">
@@ -9,7 +9,7 @@
           </svg>
           <span class="ml5">
             <span class="toggleHide">发表于</span>
-            {{data && getDate}}
+            {{data && $moment(data.updateDate).format('YYYY-MM-DD')}}
           </span>
         </li>
         <span class="shortLine">|</span>
@@ -43,7 +43,7 @@
         </li>
       </ul>
       <p class="mt20 content">{{data && data.info}}</p>
-      <div class="btn">阅读全文</div>
+      <router-link tag="div" :to="`/article/${data._id}`" class="btn">阅读全文</router-link>
     </div>
     <div class="right">
       <img :src="data.cover_url" alt />
@@ -56,12 +56,6 @@ import moment from "moment";
 export default {
   props: {
     data: Object
-  },
-  computed: {
-    getDate: ()=> {
-      // return moment(date).format("YYYY-MM-DD");
-      // return this.props.data
-    }
   }
 };
 </script>

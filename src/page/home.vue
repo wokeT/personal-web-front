@@ -1,7 +1,7 @@
 <template>
   <div class="home-wrap">
-    <ArticalCard v-for="(item,index) in list" :key="index" :data="item" />
-    <el-pagination class="pagination" background layout="prev, pager, next" :total="100"></el-pagination>
+    <ArticalCard   v-for="(item,index) in list" :key="index" :data="item" />
+    <el-pagination :hide-on-single-page="true" class="pagination" :current-page="pageNum" :page-size="10" @current-change="pageChange"  background layout="prev, pager, next" :total="total"></el-pagination>
   </div>
 </template>
 
@@ -12,7 +12,10 @@ import { stringify } from "querystring";
 export default {
   data: function() {
     return {
-      list: []
+      list: [],
+      total: 10,
+      pageNum: 1,
+      loading: true,
     };
   },
   components: {
@@ -23,20 +26,29 @@ export default {
   },
   methods: {
     async getPage(pageNum = 1, pageSize = 10) {
+      this.loading = true;
       let params = { pageNum, pageSize };
       try {
         let res = await this.axios.get(
           `${config.blogs.apiBlog}?${stringify(params)}`
         );
-        this.list = res.data;
+        this.list = res.data.list;
+        this.total = res.data.total;
+        this.pageNum = res.data.pageNum;
          
       } catch (e) {
         this.$notify.error({
           title: "出错了",
           message: e.message
         });
+      }finally {
+        this.loading = false;
       }
-    }
+    },
+    pageChange:function (page) {
+      this.getPage(page)
+    },
+
   }
 };
 </script>
