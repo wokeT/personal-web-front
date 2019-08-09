@@ -2,6 +2,7 @@
   <div class="root-wrap">
     <div :class="{rootLeft:true, rootMove:visible}">
       <Header id="header" />
+      <HeaderShort id="header" />
       <div id="content" class="root-content">
         <router-view></router-view>
       </div>
@@ -31,6 +32,7 @@
 
 <script>
 import Header from "@/components/layout/header";
+import HeaderShort from "@/components/layout/headerShort";
 import Footer from "@/components/layout/footer";
 import Slider from "@/components/layout/slider";
 import config from "@/api/interface.js";
@@ -38,6 +40,7 @@ export default {
   name: "layout",
   components: {
     Header,
+    HeaderShort,
     Footer,
     Slider
   },
@@ -96,11 +99,12 @@ html {
   margin: 0;
   font-size: 16px;
   height: 100%;
+  width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
 }
 .root-wrap {
-  width: 100vw;
+  width: 100%;
   overflow: hidden;
   display: flex;
 
@@ -113,11 +117,13 @@ html {
     transition: all 0.3s;
   }
   .rootMoveSlide {
+    width: 300px !important;
     transform: translate(-300px, 0);
     transition: all 0.3s;
   }
   .rootRight {
-    width: 300px;
+    overflow: hidden;
+    width: 0px;
     height: 100vh;
     background: #1d2935;
     transition: all 3s;
@@ -149,19 +155,37 @@ html {
   }
 }
 
+@media screen and(max-width: 544px) {
+  html {
+    font-size: 12px;
+  }
+  .root-content {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
 @media screen and(min-width: 544px) {
+  html {
+    font-size: 13px;
+  }
   .root-content {
     width: 90%;
     margin: 0 auto;
   }
 }
 @media screen and(min-width: 768px) {
+  html {
+    font-size: 14px;
+  }
   .root-content {
     width: 70%;
     margin: 0 auto;
   }
 }
 @media screen and(min-width: 1024px) {
+  html {
+    font-size: 16px;
+  }
   .root-content {
     width: 60%;
     margin: 0 auto;

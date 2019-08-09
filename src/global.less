@@ -42,3 +42,15 @@ li {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
+
+
+.slide-enter,.slide-leave-to {
+  transform: translate(-100px,0);
+  transition: all .3s ease-in;
+  opacity: 0;
+}
+.slide-enter-to,.slide-leave {
+  transition: all .3s;
+  transform: translate(0,0px);
+  opacity: 1;
+}

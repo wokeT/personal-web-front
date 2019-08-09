@@ -52,6 +52,11 @@ export default {};
 
 <style lang="less" scoped >
 @import "~@/global.less";
+@media screen and(max-width: 1024px) {
+  .wrap {
+    display: none;
+  }
+}
 .wrap {
   background: @primary-color;
   .header {
