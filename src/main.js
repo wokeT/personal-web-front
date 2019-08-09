@@ -4,6 +4,7 @@ import ElementUI from 'element-ui';
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Router from 'vue-router';
+import store from './vuex/store'
 import '@/theme/index.css';
 import routerConfig from './router.config';
 import moment from "moment";
@@ -21,5 +22,6 @@ const router = new Router({
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')

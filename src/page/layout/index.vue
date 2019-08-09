@@ -59,7 +59,7 @@ export default {
     const userInfo = sessionStorage.getItem("userInfo");
 
     //获取用户信息
-    if (!userInfo) {
+    if (!("name" in this.$store.state.users)) {
       await this.getUserData();
     }
   },
@@ -74,8 +74,11 @@ export default {
     //获取用户信息
     async getUserData() {
       try {
-        let res = await this.axios.get(`${config.user.apiUser}/5d4a9ac833697815981e0920`);
-        sessionStorage.setItem("userInfo", JSON.stringify(res.data));
+        let res = await this.axios.get(
+          `${config.user.apiUser}/5d4a9ac833697815981e0920`
+        );
+
+        this.$store.dispatch("setUsers", res.data);
       } catch (e) {
         this.$notify.error({
           title: "出错了",
@@ -140,6 +143,12 @@ html {
   }
 }
 
+@media screen and(max-width: 1024px) {
+  .rootBtn {
+    display: none;
+  }
+}
+
 @media screen and(min-width: 544px) {
   .root-content {
     width: 90%;
@@ -157,5 +166,9 @@ html {
     width: 60%;
     margin: 0 auto;
   }
+}
+.root-content {
+  box-sizing: border-box;
+  padding: 0 1rem 7rem 1rem;
 }
 </style>

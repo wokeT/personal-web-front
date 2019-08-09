@@ -1,30 +1,30 @@
 <template>
   <div class="wrap">
     <div>
-      <img :src="userInfo && userInfo.avatar_url" alt />
-      <h3>{{userInfo && userInfo.name || ''}}</h3>
+      <img :src="getUser && getUser.avatar_url" alt />
+      <h3>{{getUser && getUser.name || ''}}</h3>
       <ul class="tags">
         <li>
-          <h4>{{userInfo && userInfo.articleNum || 0}}</h4>
+          <h4>{{getUser && getUser.articleNum || 0}}</h4>
           <h5>文章</h5>
         </li>
         <li>
-          <h4>{{userInfo &&userInfo.classifyNum || 0}}</h4>
+          <h4>{{getUser &&getUser.classifyNum || 0}}</h4>
           <h5>分类</h5>
         </li>
         <li>
-          <h4>{{userInfo && userInfo.tagNum || 0}}</h4>
+          <h4>{{getUser && getUser.tagNum || 0}}</h4>
           <h5>标签</h5>
         </li>
       </ul>
       <div class="link">
-        <a>
+        <a target="_blank" href="https://github.com/wokeT">
           <svg class="rootLinkIcon" aria-hidden="true">
             <use xlink:href="#icon-github1" />
           </svg>
           <span class="ml5">Github</span>
         </a>
-        <a>
+        <a target="_blank" href="https://www.zhihu.com/people/milanxiao-tie-jiang-68/activities">
           <svg class="rootLinkIcon" aria-hidden="true">
             <use xlink:href="#icon-zhihu" />
           </svg>
@@ -36,13 +36,13 @@
           </svg>
           <span class="ml5">SegmentFault</span>
         </a>
-        <a>
+        <a target="_blank" href="https://juejin.im/user/5c4806405188252410608e08">
           <svg class="rootLinkIcon" aria-hidden="true">
             <use xlink:href="#icon-xiala" />
           </svg>
           <span class="ml5">掘金</span>
         </a>
-        <a>
+        <a target="_blank" href="https://me.csdn.net/qq_32899575">
           <svg class="rootLinkIcon" aria-hidden="true">
             <use xlink:href="#icon-csdn" />
           </svg>
@@ -65,8 +65,8 @@ export default {
     return {};
   },
   computed: {
-    userInfo: function() {
-      return JSON.parse(sessionStorage.getItem("userInfo"));
+    getUser: function() {
+      return this.$store.state.users;
     }
   }
 };

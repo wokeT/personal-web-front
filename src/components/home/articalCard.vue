@@ -18,7 +18,8 @@
             <use xlink:href="#icon-huaban" />
           </svg>
           <span class="ml5">
-            <span class="toggleHide">分类于</span> vue
+            <span class="toggleHide">分类于</span>
+            {{getClassify}}
           </span>
         </li>
         <span class="shortLine">|</span>
@@ -56,6 +57,17 @@ import moment from "moment";
 export default {
   props: {
     data: Object
+  },
+  computed: {
+    getClassify: function() {
+      let list = this.$store.state.users.classify;
+      let id = this.$props.data.classify;
+      if (id && list.length > 0) {
+        return list.find((item, index) => item._id === id).name;
+      } else {
+        return "";
+      }
+    }
   }
 };
 </script>

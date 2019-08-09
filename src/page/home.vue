@@ -58,7 +58,6 @@ export default {
   padding-top: 2.5rem;
   .pagination {
     border-top: 1px solid rgb(231, 230, 230);
-    margin-bottom: 3.75rem;
   }
 }
 </style>

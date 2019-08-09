@@ -19,7 +19,8 @@
               <use xlink:href="#icon-huaban" />
             </svg>
             <span class="ml5">
-              <span class="toggleHide">分类于</span> vue
+              <span class="toggleHide">分类于</span>
+              {{getClassify}}
             </span>
           </li>
           <span class="shortLine">|</span>
@@ -44,7 +45,7 @@
           </li>
         </ul>
       </header>
-      <section v-html="data.content"></section>
+      <section class="section" v-html="data.content"></section>
     </article>
 
     <div @click="starHandle" v-show="!loading" :class="{likeBtn:true,likeBtnActive:star}">
@@ -58,7 +59,7 @@
 
 <script>
 import config from "@/api/interface";
-import moment from 'moment';
+import moment from "moment";
 export default {
   data: () => ({
     data: {},
@@ -68,6 +69,18 @@ export default {
 
   async mounted() {
     await this.getData();
+  },
+
+  computed: {
+    getClassify: function() {
+      let list = this.$store.state.users.classify;
+      let id = this.data.classify;
+      if ("_id" in this.data && list.length > 0) {
+        return list.find((item, index) => item._id === id).name;
+      } else {
+        return "";
+      }
+    }
   },
 
   methods: {
@@ -145,6 +158,11 @@ export default {
         }
       }
     }
+  }
+
+  .section {
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
 
   .likeBtn {
