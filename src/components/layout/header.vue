@@ -8,26 +8,27 @@
           </svg>
           <span class="ml5">首页</span>
         </router-link>
-        <li>
+
+        <router-link tag="li" to="/classify">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-fenlei" />
           </svg>
           <span class="ml5">分类</span>
-        </li>
+        </router-link>
 
-        <router-link tag="li" to="/archives">
+        <router-link tag="li" to="/archives/article">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-guidangicon" />
           </svg>
           <span class="ml5">归档</span>
         </router-link>
 
-        <li>
+        <router-link tag="li" to="tag">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-biaoqian" />
           </svg>
           <span class="ml5">标签</span>
-        </li>
+        </router-link>
         <li>
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-github1" />

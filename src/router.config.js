@@ -1,6 +1,8 @@
 import Home from "./page/home.vue";
 import Article from "./page/article";
 import Archives from "./page/archives";
+import Tag from "./page/tag";
+import Classify from './page/classify'
 
 export default [
   {
@@ -12,5 +14,7 @@ export default [
     component: Home
   },
   { path: "/article/:id", component: Article },
-  { path: "/archives", component: Archives }
+  { path: "/archives/:type", component: Archives },
+  { path: "/tag", component: Tag },
+  { path: "/classify", component: Classify },
 ];
