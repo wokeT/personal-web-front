@@ -94,9 +94,9 @@ export default {
       padding: 1rem 0;
       li {
         border-radius: 5px;
-        font-size: 0.87rem;
-        line-height: 0.87rem;
-        height: 1rem;
+        font-size: 1.2rem;
+        line-height: 1.2rem;
+        // height: 1.2rem;
         padding: 0.2rem 1rem;
         .icon {
           width: 0.87rem;
