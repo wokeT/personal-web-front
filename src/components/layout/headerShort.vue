@@ -18,7 +18,7 @@
             <span class="ml10">分类</span>
           </router-link>
 
-          <router-link tag="li" to="/archives/article">
+          <router-link tag="li" to="/archives/article/all">
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-guidangicon" />
             </svg>

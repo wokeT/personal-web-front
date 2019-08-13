@@ -14,7 +14,7 @@ export default [
     component: Home
   },
   { path: "/article/:id", component: Article },
-  { path: "/archives/:type", component: Archives },
+  { path: "/archives/:type/:id", component: Archives },
   { path: "/tag", component: Tag },
   { path: "/classify", component: Classify },
 ];

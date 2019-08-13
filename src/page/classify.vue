@@ -1,7 +1,9 @@
 <template>
   <div class="tag-wrap">
     <h4>分类（{{classifyList.length}}）</h4>
-    <el-tag class="tag" v-for="item in classifyList" :key="item._id">{{item.name}}</el-tag>
+    <el-tag class="tag" v-for="item in classifyList" :key="item._id">
+      <router-link :to="`/archives/classify/${item._id}`" tag="span">{{item.name}}</router-link>
+    </el-tag>
   </div>
 </template>
 

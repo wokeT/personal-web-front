@@ -1,7 +1,9 @@
 <template>
   <div class="tag-wrap">
     <h4>标签（{{tagList.length}}）</h4>
-    <el-tag class="tag" v-for="item in tagList" :key="item._id">{{item.name}}</el-tag>
+    <el-tag class="tag" v-for="item in tagList" :key="item._id">
+      <router-link :to="`/archives/tag/${item._id}`" tag="span">{{item.name}}</router-link>
+    </el-tag>
   </div>
 </template>
 
@@ -10,7 +12,7 @@ export default {
   computed: {
     tagList: function() {
       return this.$store.state.users.tags;
-    },
+    }
   }
 };
 </script>
@@ -25,7 +27,9 @@ export default {
   }
   .tag {
     margin-right: 2rem;
-    cursor: pointer;
+    span {
+      cursor: pointer;
+    }
   }
 }
 </style>

@@ -2,40 +2,40 @@
   <div class="wrap">
     <div class="header">
       <ul class="fr menu">
-        <router-link tag="li" to="/home">
+        <router-link tag="li" to="/home" :class="{active: curMenu==='home'}">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-home" />
           </svg>
           <span class="ml5">首页</span>
         </router-link>
 
-        <router-link tag="li" to="/classify">
+        <router-link tag="li" to="/classify" :class="{active: curMenu==='classify'}">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-fenlei" />
           </svg>
           <span class="ml5">分类</span>
         </router-link>
 
-        <router-link tag="li" to="/archives/article">
+        <router-link tag="li" to="/archives/article/all" :class="{active: curMenu==='archives'}">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-guidangicon" />
           </svg>
           <span class="ml5">归档</span>
         </router-link>
 
-        <router-link tag="li" to="tag">
+        <router-link tag="li" to="/tag" :class="{active: curMenu==='tag'}">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-biaoqian" />
           </svg>
           <span class="ml5">标签</span>
         </router-link>
-        <li>
+        <li :class="{active: curMenu==='gpl'}">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-github1" />
           </svg>
           <span class="ml5">开源</span>
         </li>
-        <li>
+        <li :class="{active: curMenu==='about'}">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-guanyuwomen" />
           </svg>
@@ -48,7 +48,26 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data: function() {
+    return {
+      curPath: this.$router.history.current.fullPath,
+    };
+  },
+  computed: {
+    curMenu: function() {
+      return this.curPath.match(/^\/(\w+)/i) &&
+        this.curPath.match(/^\/(\w+)/i).length > 0
+        ? this.curPath.match(/^\/(\w+)/i)[1]
+        : "";
+    }
+  },
+  watch: {
+    $route(to, from) {
+      this.curPath = to.fullPath;
+    }
+  }
+};
 </script>
 
 <style lang="less" scoped >
@@ -73,6 +92,7 @@ export default {};
       li {
         width: 4.38rem;
         height: 1.6rem;
+        margin-left: 0.2rem;
         line-height: 1.6rem;
         text-align: center;
         .icon {
@@ -88,6 +108,11 @@ export default {};
           color: black;
           cursor: pointer;
         }
+      }
+      .active {
+        background: rgb(219, 213, 213);
+        color: black;
+        cursor: pointer;
       }
     }
   }
