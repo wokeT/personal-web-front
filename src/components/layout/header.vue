@@ -29,18 +29,18 @@
           </svg>
           <span class="ml5">标签</span>
         </router-link>
-        <li :class="{active: curMenu==='gpl'}">
+        <router-link tag="li" to="/gpl" :class="{active: curMenu==='gpl'}">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-github1" />
           </svg>
           <span class="ml5">开源</span>
-        </li>
-        <li :class="{active: curMenu==='about'}">
+        </router-link>
+        <router-link tag="li" to="/about" :class="{active: curMenu==='about'}">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-guanyuwomen" />
           </svg>
           <span class="ml5">关于</span>
-        </li>
+        </router-link>
       </ul>
       <h3>woke的博客</h3>
     </div>

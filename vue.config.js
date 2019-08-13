@@ -16,6 +16,11 @@ module.exports = {
         target: 'http://localhost:3000',
         pathRewrite: { "^/api": "" },
         changeOrigin: true
+      },
+      '/gpl': {
+        target: 'https://api.github.com',
+        pathRewrite: { "^/gpl": "" },
+        changeOrigin: true
       }
     }
   }

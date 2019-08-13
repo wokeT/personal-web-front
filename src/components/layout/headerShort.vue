@@ -31,18 +31,18 @@
             </svg>
             <span class="ml10">标签</span>
           </router-link>
-          <li>
+          <router-link tag="li" to="/gpl">
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-github1" />
             </svg>
             <span class="ml10">开源</span>
-          </li>
-          <li>
+          </router-link>
+          <router-link tag="li" to="/about">
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-guanyuwomen" />
             </svg>
             <span class="ml10">关于</span>
-          </li>
+          </router-link>
         </ul>
       </div>
     </transition>
