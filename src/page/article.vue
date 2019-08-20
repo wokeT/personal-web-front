@@ -59,7 +59,6 @@
 
 <script>
 import config from "@/api/interface";
-import moment from "moment";
 export default {
   data: () => ({
     data: {},
@@ -76,7 +75,7 @@ export default {
       let list = this.$store.state.users.classify;
       let id = this.data.classify;
       if ("_id" in this.data && list.length > 0) {
-        return list.find((item, index) => item._id === id).name;
+        return list.find(item => item._id === id).name;
       } else {
         return "";
       }
@@ -124,6 +123,7 @@ export default {
 @import "~@/global.less";
 .article-wrap {
   padding-top: 4rem;
+  width: 100%;
   header {
     text-align: center;
     h1 {
@@ -163,6 +163,11 @@ export default {
   .section {
     margin-top: 50px;
     margin-bottom: 50px;
+    :global {
+      .image-wrap {
+        width: 200px !important;
+      }
+    }
   }
 
   .likeBtn {
@@ -190,4 +195,9 @@ export default {
     cursor: default;
   }
 }
+</style>
+<style  scoped>
+  .section>>> img {
+    max-width: 100%;
+  }
 </style>

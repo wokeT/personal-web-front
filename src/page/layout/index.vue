@@ -195,5 +195,6 @@ html {
 .root-content {
   box-sizing: border-box;
   padding: 0 1rem 7rem 1rem;
+  overflow: hidden;
 }
 </style>
