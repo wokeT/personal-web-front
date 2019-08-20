@@ -63,7 +63,9 @@ export default {
 
     //获取用户信息
     if (!("name" in this.$store.state.users)) {
+      this.visit();
       await this.getUserData();
+      
     }
   },
   methods: {
@@ -88,6 +90,20 @@ export default {
           message: e.message
         });
       }
+    },
+    //记录访问网站
+    async visit() {
+      try {
+        let res = await this.axios.patch(`${config.data.apiData}`,{
+          count: 1,
+          date: this.$moment(new Date).format('YYYY-MM-DD')
+        });
+      } catch (e) {
+        this.$notify.error({
+          title: "出错了",
+          message: e.message
+        });
+      }
     }
   }
 };
@@ -102,7 +118,7 @@ html {
   width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  -webkit-overflow-scrolling:touch;
+  -webkit-overflow-scrolling: touch;
 }
 .root-wrap {
   width: 100%;

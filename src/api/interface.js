@@ -6,5 +6,8 @@ export default {
   },
   blogs: {
     apiBlog: `${API}/blogs`,
+  },
+  data: {
+    apiData: `${API}/dataCenter`
   }
 }
