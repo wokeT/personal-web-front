@@ -9,7 +9,7 @@
           </svg>
           <span class="ml5">
             <span class="toggleHide">发表于</span>
-            {{data && $moment(data.updateDate).format('YYYY-MM-DD')}}
+            {{data.updateDate | formatDate}}
           </span>
         </li>
         <span class="shortLine">|</span>
@@ -53,10 +53,16 @@
 </template>
 
 <script>
-import moment from "moment";
 export default {
   props: {
     data: Object
+  },
+  filters: {
+    formatDate(date) {
+      if (!date) return;
+      let time = new Date(date);
+      return `${time.getFullYear()}-${time.getMonth()}-${time.getDate()}`;
+    }
   },
   computed: {
     getClassify: function() {

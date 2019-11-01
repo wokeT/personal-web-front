@@ -11,7 +11,7 @@
       <el-timeline-item
         v-for="(item,index) in value"
         :key="index"
-        :timestamp="$moment(item.updateDate).format('YYYY-MM-DD')"
+        :timestamp="formatDate(item.updateDate)"
         placement="top"
       >
         <el-card shadow="hover" body-style="padding:5px 5px 5px 20px">
@@ -39,7 +39,6 @@ export default {
       id: ""
     };
   },
-
   computed: {
     title: function() {
       const { tags, classify } = this.$store.state.users;
@@ -52,7 +51,7 @@ export default {
           ? classify.find((item, index) => item._id === this.id).name
           : "";
       }
-    }
+    },
   },
 
   async mounted() {
@@ -61,6 +60,10 @@ export default {
   },
 
   methods: {
+    formatDate(date) {
+      let time = new Date(date);
+      return `${time.getFullYear()}-${time.getMonth()}-${time.getDate()}`;
+    },
     initParams: function() {
       const { type, id } = this.$router.history.current.params;
       this.type = type;
@@ -74,7 +77,6 @@ export default {
           `${config.blogs.apiBlog}/group/${this.type}?id=${this.id}`
         );
         this.groupData = res.data;
-           
       } catch (e) {
         this.$notify.error({
           title: "出错了",

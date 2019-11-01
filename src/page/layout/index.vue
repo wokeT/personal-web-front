@@ -94,9 +94,10 @@ export default {
     //记录访问网站
     async visit() {
       try {
+        let date = new Date();
         let res = await this.axios.patch(`${config.data.apiData}`,{
           count: 1,
-          date: this.$moment(new Date).format('YYYY-MM-DD')
+          date: `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
         });
       } catch (e) {
         this.$notify.error({
