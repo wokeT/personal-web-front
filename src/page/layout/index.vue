@@ -1,6 +1,6 @@
 <template>
   <div class="root-wrap">
-    <div :class="{rootLeft:true, rootMove:visible}">
+    <div :class="{ rootLeft: true, rootMove: visible }">
       <Header id="header" />
       <HeaderShort id="header" />
       <div id="content" class="root-content">
@@ -8,7 +8,7 @@
       </div>
       <Footer id="footer" />
     </div>
-    <div :class="{rootRight:true,rootMoveSlide:visible}">
+    <div :class="{ rootRight: true, rootMoveSlide: visible }">
       <Slider />
     </div>
     <div
@@ -17,10 +17,18 @@
       @click="toggle"
       class="rootBtn"
     >
-      <svg v-show="iconType === 'menu' && !visible " class="rootIconShow" aria-hidden="true">
+      <svg
+        v-show="iconType === 'menu' && !visible"
+        class="rootIconShow"
+        aria-hidden="true"
+      >
         <use xlink:href="#icon-icon-test" />
       </svg>
-      <svg v-show="iconType === 'left' && !visible" class="rootIconShow" aria-hidden="true">
+      <svg
+        v-show="iconType === 'left' && !visible"
+        class="rootIconShow"
+        aria-hidden="true"
+      >
         <use xlink:href="#icon-zuojiantou" />
       </svg>
       <svg v-show="visible" class="rootIconShow" aria-hidden="true">
@@ -31,13 +39,13 @@
 </template>
 
 <script>
-import Header from "@/components/layout/header";
-import HeaderShort from "@/components/layout/headerShort";
-import Footer from "@/components/layout/footer";
-import Slider from "@/components/layout/slider";
-import config from "@/api/interface.js";
+import Header from '@/components/layout/header'
+import HeaderShort from '@/components/layout/headerShort'
+import Footer from '@/components/layout/footer'
+import Slider from '@/components/layout/slider'
+import config from '@/api/interface.js'
 export default {
-  name: "layout",
+  name: 'layout',
   components: {
     Header,
     HeaderShort,
@@ -47,67 +55,70 @@ export default {
   data: () => {
     return {
       visible: false,
-      iconType: "menu"
-    };
+      iconType: 'menu'
+    }
   },
   async mounted() {
     //设置content最小高度
-    let headerHeight = document.getElementById("header").clientHeight;
-    let footerHeight = document.getElementById("footer").clientHeight;
-    let pageHeight = document.body.clientHeight;
-    let contentDom = document.getElementById("content");
-    contentDom.style.minHeight =
-      pageHeight - headerHeight - footerHeight + "px";
+    let headerHeight = document.getElementById('header').clientHeight
+    let footerHeight = document.getElementById('footer').clientHeight
+    let pageHeight = document.body.clientHeight
+    let contentDom = document.getElementById('content')
+    contentDom.style.minHeight = pageHeight - headerHeight - footerHeight + 'px'
 
-    const userInfo = sessionStorage.getItem("userInfo");
+    const userInfo = sessionStorage.getItem('userInfo')
 
     //获取用户信息
-    if (!("name" in this.$store.state.users)) {
-      this.visit();
-      await this.getUserData();
-      
+    if (!('name' in this.$store.state.users)) {
+      this.visit()
+      await this.getUserData()
     }
   },
   methods: {
     toggle: function() {
-      this.visible = !this.visible;
+      this.visible = !this.visible
     },
     //改变iconType
     changeIcon: function(type) {
-      this.iconType = type;
+      this.iconType = type
     },
     //获取用户信息
     async getUserData() {
       try {
         let res = await this.axios.get(
           `${config.user.apiUser}/5d4a9ac833697815981e0920`
-        );
+        )
 
-        this.$store.dispatch("setUsers", res.data);
+        this.$store.dispatch('setUsers', res.data)
       } catch (e) {
         this.$notify.error({
-          title: "出错了",
+          title: '出错了',
           message: e.message
-        });
+        })
       }
     },
     //记录访问网站
     async visit() {
       try {
-        let date = new Date();
-        let res = await this.axios.patch(`${config.data.apiData}`,{
+        let date = new Date()
+        let dateCode = `${date.getFullYear()}${
+          date.getMonth() + 1 >= 10
+            ? date.getMonth() + 1
+            : `0${date.getMonth() + 1}`
+        }${date.getDate() >= 10 ? date.getDate() : `0${date.getDate()}`}`
+        let res = await this.axios.patch(`${config.data.apiData}`, {
           count: 1,
-          date: `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
-        });
+          date: parseInt(dateCode)
+        })
       } catch (e) {
         this.$notify.error({
-          title: "出错了",
+          title: '出错了',
           message: e.message
-        });
+        })
       }
     }
   }
-};
+}
 </script>
 
 <style lang="less">
