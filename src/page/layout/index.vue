@@ -65,9 +65,7 @@ export default {
     let pageHeight = document.body.clientHeight
     let contentDom = document.getElementById('content')
     contentDom.style.minHeight = pageHeight - headerHeight - footerHeight + 'px'
-
     const userInfo = sessionStorage.getItem('userInfo')
-
     //获取用户信息
     if (!('name' in this.$store.state.users)) {
       this.visit()
