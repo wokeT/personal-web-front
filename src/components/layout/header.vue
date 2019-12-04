@@ -29,7 +29,7 @@
           </svg>
           <span class="ml5">标签</span>
         </router-link>
-        <router-link tag="li" to="/gpl" :class="{active: curMenu==='gpl'}">
+        <router-link tag="li" to="/gplProject" :class="{active: curMenu==='gplProject'}">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-github1" />
           </svg>

@@ -14,7 +14,7 @@
         <el-tag style="marginLeft:1rem">
           <i class="el-icon-share"></i>
           <b>Fork</b>
-          {{item.watchers_count}}
+          {{item.forks_count}}
         </el-tag>
       </div>
       <p class="info">{{item.description}}</p>

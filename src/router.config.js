@@ -31,7 +31,7 @@ export default [
     component: Classify
   },
   {
-    path: "/gpl",
+    path: "/gplProject",
     component: Gpl
   },
   {

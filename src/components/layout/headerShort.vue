@@ -31,7 +31,7 @@
             </svg>
             <span class="ml10">标签</span>
           </router-link>
-          <router-link tag="li" to="/gpl">
+          <router-link tag="li" to="/gplProject">
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-github1" />
             </svg>
