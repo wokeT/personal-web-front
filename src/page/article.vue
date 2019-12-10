@@ -100,7 +100,7 @@ export default {
       } catch (e) {
         this.$notify.error({
           title: "出错了",
-          message: e.message
+          message: e
         });
       } finally {
         this.loading = false;

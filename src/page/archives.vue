@@ -11,7 +11,7 @@
       <el-timeline-item
         v-for="(item,index) in value"
         :key="index"
-        :timestamp="formatDate(item.updateDate)"
+        :timestamp="formatDate(item.createDate)"
         placement="top"
       >
         <el-card shadow="hover" body-style="padding:5px 5px 5px 20px">
