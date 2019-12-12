@@ -9,7 +9,7 @@
           </svg>
           <span class="ml5">
             <span class="toggleHide">发表于</span>
-            {{data.updateDate | formatDate}}
+            {{data.createDate | formatDate}}
           </span>
         </li>
         <span class="shortLine">|</span>
@@ -58,14 +58,14 @@ export default {
     data: Object
   },
   filters: {
-    formatDate(date) {
+    formatDate (date) {
       if (!date) return;
       let time = new Date(date);
       return `${time.getFullYear()}-${time.getMonth()}-${time.getDate()}`;
     }
   },
   computed: {
-    getClassify: function() {
+    getClassify: function () {
       let list = this.$store.state.users.classify;
       let id = this.$props.data.classify;
       if (id && list.length > 0) {
@@ -79,7 +79,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "~@/global.less";
+@import '~@/global.less';
 .card-wrap {
   width: 100%;
   display: flex;
@@ -96,7 +96,7 @@ export default {
       margin: 0;
       cursor: pointer;
       &::after {
-        content: "";
+        content: '';
         display: block;
         height: 2px;
         width: 0;
@@ -106,7 +106,7 @@ export default {
         transition: all 0.3s;
       }
       &:hover::after {
-        content: "";
+        content: '';
         display: block;
         height: 2px;
         width: 100%;
@@ -168,9 +168,10 @@ export default {
     width: 200px;
     height: 200px;
     overflow: hidden;
+    text-align: center;
     img {
-      width: 200px;
-      height: 200px;
+      width: 100%;
+      max-height: 200px;
       transition: all 0.3s;
       &:hover {
         transform: scale(1.2);

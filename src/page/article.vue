@@ -10,7 +10,7 @@
             </svg>
             <span class="ml5">
               <span class="toggleHide">发表于</span>
-              {{data.updateDate | formatDate}}
+              {{data.createDate | formatDate}}
             </span>
           </li>
           <span class="shortLine">|</span>
