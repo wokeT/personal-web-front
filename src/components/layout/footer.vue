@@ -26,7 +26,7 @@ export default {};
 }
 .bottom {
   img {
-    vertical-align: -0.5em;
+    vertical-align: -0.3em;
   }
 }
 </style>
