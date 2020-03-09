@@ -1,5 +1,5 @@
 <template>
-  <div v-html="user.info" />
+  <p class="wrap" v-html="user.info" />
 </template>
 
 <script>
@@ -35,5 +35,11 @@ export default {
 };
 </script>
 
-<style>
+<style lang="less" scoped>
+.wrap {
+  padding: 1rem 0;
+}
+.wrap /deep/ img {
+  width: 100%;
+}
 </style>
